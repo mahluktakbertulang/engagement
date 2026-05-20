@@ -87,6 +87,18 @@ p{
   color:var(--muted);
 }
 
+.parent-text{
+  max-width:none;
+  white-space:nowrap;
+  font-size:clamp(12px,1.2vw,16px);
+}
+
+.calendar-month{
+  font-size:clamp(24px,4vw,46px);
+  margin-top:8px;
+  margin-bottom:4px;
+}
+
 .btn{
   margin-top:28px;
   display:inline-block;
@@ -351,7 +363,7 @@ p{
   <div class="photo-frame">
     <img
       class="photo-img"
-      src="https://lh3.googleusercontent.com/d/15E8iHiYgtYixs-WqI_fBJmkL9Fsy3gaV"
+      src="https://lh3.googleusercontent.com/d/1oazEmLICI4WrqGqTGfPQbT25PW62ZPBM"
       alt="Couple"
     >
   </div>
@@ -361,7 +373,7 @@ p{
     Rahmatullah
   </h2>
 
-  <p class="small">
+  <p class="small parent-text">
     Putra dari Bapak Yeyet Priatna & Ibu Nani Yuningsih
   </p>
 
@@ -374,7 +386,7 @@ p{
     Alpira Irawan
   </h2>
 
-  <p class="small">
+  <p class="small parent-text">
     Putri dari Bapak Alm. Dedih Irawan & Ibu Mimin Sumiarsih
   </p>
 
@@ -390,6 +402,10 @@ p{
     DATE!
   </h1>
 
+  <h2 class="hand calendar-month" id="calendarMonthYear">
+    Juni 2026
+  </h2>
+
   <table class="calendar">
     <tr>
       <th id="dayBefore2">Jumat</th>
@@ -404,7 +420,12 @@ p{
   </table>
 
   <div class="event-card">
-    <h2 class="hand">
+    <h2 class="hand" style="display:flex;align-items:center;justify-content:center;gap:12px;">
+      <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 10L32 17L40 10" stroke="#9d1420" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 10L14 15C11.5 16.2 10.2 19 11.2 21.6L15 31L22 28V52C22 53.7 23.3 55 25 55H39C40.7 55 42 53.7 42 52V28L49 31L52.8 21.6C53.8 19 52.5 16.2 50 15L40 10" stroke="#9d1420" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M29 20H35" stroke="#9d1420" stroke-width="3" stroke-linecap="round"/>
+      </svg>
       Dresscode
     </h2>
 
@@ -527,6 +548,9 @@ function renderCalendar(){
   document.getElementById('dateBefore2').textContent = before2.getDate();
   document.getElementById('dateBefore1').textContent = before1.getDate();
   document.getElementById('dateEvent').textContent = eventDate.getDate();
+
+  document.getElementById('calendarMonthYear').textContent =
+    `${monthNames[eventDate.getMonth()]} ${eventDate.getFullYear()}`;
 
   document.getElementById('eventDateText').textContent =
     `${dayNames[eventDate.getDay()]}, ${eventDate.getDate()} ${monthNames[eventDate.getMonth()]} ${eventDate.getFullYear()}`;
