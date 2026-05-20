@@ -31,7 +31,11 @@ html{
 
 body{
   font-family:'Quicksand',sans-serif;
-  background:linear-gradient(180deg,#fff7f5,#fff,#f9eef1);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 201, 217, .75), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(255, 224, 180, .75), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(232, 214, 255, .85), transparent 32%),
+    linear-gradient(180deg,#fff7f5,#fff,#f9eef1);
   color:var(--dark);
   overflow-x:hidden;
 }
@@ -189,14 +193,15 @@ p{
 
 .event-card{
   width:min(100%,700px);
-  background:#fff;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(12px);
   padding:28px;
   border-radius:28px;
   margin:14px 0;
-  box-shadow:0 18px 40px rgba(0,0,0,.06);
+  box-shadow:0 18px 40px rgba(157,20,32,.08);
+  border:1px solid rgba(255,255,255,.8);
 }
 
-/* INI BAGIAN FOTO DRESSCODE */
 .dresscode-img{
   width:100%;
   max-width:500px;
@@ -281,7 +286,7 @@ p{
 <main class="page">
 
 <audio id="bgMusic" loop preload="auto">
-  <source src="The Adams - Hanya Kau.mp3" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <section id="cover">
@@ -357,7 +362,7 @@ p{
   </h2>
 
   <p class="small">
-    Putra dari Bapak ... & Ibu ...
+    Putra dari Bapak Yeyet Priatna & Ibu Nani Yuningsih
   </p>
 
   <p class="hand" style="font-size:48px;margin:25px 0">
@@ -370,7 +375,7 @@ p{
   </h2>
 
   <p class="small">
-    Putri dari Bapak ... & Ibu ...
+    Putri dari Bapak Alm. Dedih Irawan & Ibu Mimin Sumiarsih
   </p>
 
 </section>
@@ -387,14 +392,14 @@ p{
 
   <table class="calendar">
     <tr>
-      <th>Jumat</th>
-      <th>Sabtu</th>
-      <th>Minggu</th>
+      <th id="dayBefore2">Jumat</th>
+      <th id="dayBefore1">Sabtu</th>
+      <th id="dayEvent">Minggu</th>
     </tr>
     <tr>
-      <td>5</td>
-      <td><span class="circle">6</span></td>
-      <td>7</td>
+      <td id="dateBefore2">26</td>
+      <td id="dateBefore1">27</td>
+      <td><span class="circle" id="dateEvent">28</span></td>
     </tr>
   </table>
 
@@ -416,20 +421,20 @@ p{
       Lokasi
     </h2>
 
-    <p>
-      Sabtu, 6 Juni 2026
+    <p id="eventDateText">
+      Minggu, 28 Juni 2026
     </p>
 
     <p>
-      11.00 WIB - selesai
+      10.00 WIB - Selesai
     </p>
 
     <p class="small">
-      Nama Venue, Alamat Lengkap
+      RM Saoeng Paberik, Jl. Soekarno-Hatta No.571, Gumuruh, Kec. Batununggal, Kota Bandung, Jawa Barat 40275
     </p>
 
     <a
-      href="https://maps.google.com"
+      href="https://maps.app.goo.gl/xxrG2hrNDskdixGdA"
       target="_blank"
       class="btn"
     >
@@ -465,6 +470,69 @@ function startMusic(){
     alert('Klik sekali lagi untuk memutar musik');
   });
 }
+
+/*
+  CUKUP UBAH TANGGAL DI SINI
+  Format: tahun, bulanIndex, tanggal
+  Catatan: bulanIndex dimulai dari 0
+  Januari=0, Februari=1, Maret=2, April=3, Mei=4, Juni=5, Juli=6, dst.
+
+  Event sekarang: Minggu, 28 Juni 2026 jam 10.00 WIB
+*/
+const eventDate = new Date(2026, 5, 28, 10, 0, 0);
+
+const dayNames = [
+  'Minggu',
+  'Senin',
+  'Selasa',
+  'Rabu',
+  'Kamis',
+  'Jumat',
+  'Sabtu'
+];
+
+const monthNames = [
+  'Januari',
+  'Februari',
+  'Maret',
+  'April',
+  'Mei',
+  'Juni',
+  'Juli',
+  'Agustus',
+  'September',
+  'Oktober',
+  'November',
+  'Desember'
+];
+
+function cloneDate(date){
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function addDays(date, days){
+  const result = cloneDate(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+function renderCalendar(){
+  const before2 = addDays(eventDate, -2);
+  const before1 = addDays(eventDate, -1);
+
+  document.getElementById('dayBefore2').textContent = dayNames[before2.getDay()];
+  document.getElementById('dayBefore1').textContent = dayNames[before1.getDay()];
+  document.getElementById('dayEvent').textContent = dayNames[eventDate.getDay()];
+
+  document.getElementById('dateBefore2').textContent = before2.getDate();
+  document.getElementById('dateBefore1').textContent = before1.getDate();
+  document.getElementById('dateEvent').textContent = eventDate.getDate();
+
+  document.getElementById('eventDateText').textContent =
+    `${dayNames[eventDate.getDay()]}, ${eventDate.getDate()} ${monthNames[eventDate.getMonth()]} ${eventDate.getFullYear()}`;
+}
+
+renderCalendar();
 </script>
 
 </body>
