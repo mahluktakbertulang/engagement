@@ -17,6 +17,7 @@
   --red:#9d1420;
   --dark:#3d2b2f;
   --muted:#846d71;
+  --soft:#f8d7dc;
 }
 
 *{
@@ -32,9 +33,9 @@ html{
 body{
   font-family:'Quicksand',sans-serif;
   background:
-    radial-gradient(circle at 15% 10%, rgba(255, 201, 217, .75), transparent 28%),
-    radial-gradient(circle at 85% 20%, rgba(255, 224, 180, .75), transparent 30%),
-    radial-gradient(circle at 50% 90%, rgba(232, 214, 255, .85), transparent 32%),
+    radial-gradient(circle at 15% 10%, rgba(255,201,217,.75), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(255,224,180,.75), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(232,214,255,.85), transparent 32%),
     linear-gradient(180deg,#fff7f5,#fff,#f9eef1);
   color:var(--dark);
   overflow-x:hidden;
@@ -61,7 +62,7 @@ section{
 .hand{
   font-family:'Gaegu',cursive;
   color:var(--red);
-  letter-spacing: 0.5px;
+  letter-spacing:.5px;
 }
 
 h1{
@@ -93,32 +94,21 @@ p{
   font-size:clamp(12px,1.2vw,16px);
 }
 
-.calendar-month{
-  font-size:clamp(24px,4vw,46px);
-  margin-top:8px;
-  margin-bottom:4px;
-}
-
 .btn{
   margin-top:28px;
   display:inline-block;
   background:var(--red);
   color:#fff;
   text-decoration:none;
-  padding:14px 34px;
-  border-radius:14px;
+  padding:15px 38px;
+  border-radius:18px;
   font-weight:700;
-  transition:.3s;
-  box-shadow:0 12px 30px rgba(157,20,32,.2);
+  transition:.3s ease;
+  box-shadow:0 14px 34px rgba(157,20,32,.22);
 }
 
 .btn:hover{
   transform:translateY(-4px);
-}
-
-.names{
-  font-size:clamp(34px,6vw,64px);
-  margin-top:30px;
 }
 
 .cover-line{
@@ -130,16 +120,57 @@ p{
   width:100%;
 }
 
+/* NAMA TAMU PREMIUM */
+.guest-card{
+  width:min(88%,460px);
+  margin-top:26px;
+  padding:24px 26px;
+  background:rgba(255,255,255,.45);
+  border:1px solid rgba(157,20,32,.18);
+  border-radius:30px;
+  box-shadow:
+    0 20px 45px rgba(157,20,32,.12),
+    inset 0 0 0 1px rgba(255,255,255,.55);
+  backdrop-filter:blur(14px);
+}
+
+.guest-label{
+  font-size:13px;
+  color:var(--muted);
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.guest-name{
+  font-size:clamp(34px,7vw,58px);
+  line-height:.95;
+  margin:0;
+  color:var(--red);
+  word-break:break-word;
+}
+
+.guest-subtitle{
+  margin-top:10px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.opening-note{
+  margin-top:14px;
+  font-size:13px;
+  color:var(--muted);
+}
+
 .photo-frame{
-  width: clamp(250px, 28vw, 420px);
-  aspect-ratio: 4 / 5;
-  border: 5px solid var(--red);
-  border-radius: 48% 52% 44% 56% / 38% 42% 58% 62%;
-  overflow: hidden;
-  padding: 0;
-  background: #fff;
-  margin: 40px 0 20px;
-  position: relative;
+  width:clamp(250px,28vw,420px);
+  aspect-ratio:4 / 5;
+  border:5px solid var(--red);
+  border-radius:48% 52% 44% 56% / 38% 42% 58% 62%;
+  overflow:hidden;
+  background:#fff;
+  margin:40px 0 20px;
+  position:relative;
 }
 
 .photo-frame::before{
@@ -149,14 +180,30 @@ p{
   left:50%;
   transform:translateX(-50%);
   font-size:48px;
+  z-index:2;
 }
 
 .photo-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 70%;
-  border-radius: inherit;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 70%;
+  border-radius:inherit;
+}
+
+.future-title{
+  margin:0;
+  line-height:1;
+}
+
+.future-title:first-of-type{
+  margin-top:28px;
+}
+
+.calendar-month{
+  font-size:clamp(24px,4vw,46px);
+  margin-top:8px;
+  margin-bottom:4px;
 }
 
 .calendar{
@@ -215,6 +262,18 @@ p{
   border:1px solid rgba(255,255,255,.8);
 }
 
+.dress-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.dress-subtitle{
+  color:var(--muted);
+  margin-top:4px;
+}
+
 .dresscode-img{
   width:100%;
   max-width:500px;
@@ -226,15 +285,6 @@ p{
   padding:12px;
   background:#fff;
   border-radius:24px;
-}
-
-.future-title{
-  margin:0;
-  line-height:1;
-}
-
-.future-title:first-of-type{
-  margin-top:28px;
 }
 
 .disc{
@@ -266,6 +316,10 @@ p{
   animation-delay:.4s;
 }
 
+.delay3{
+  animation-delay:.6s;
+}
+
 @keyframes fadeUp{
   from{
     opacity:0;
@@ -278,6 +332,10 @@ p{
 }
 
 @media(max-width:768px){
+  section{
+    padding:45px 18px;
+  }
+
   .disc{
     width:80px;
     height:80px;
@@ -298,6 +356,10 @@ p{
     max-width:100%;
     max-height:420px;
     padding:8px;
+  }
+
+  .parent-text{
+    white-space:normal;
   }
 }
 </style>
@@ -336,15 +398,13 @@ p{
     </svg>
   </div>
 
-  <div class="names hand fade delay2">
-    Fakhri + Marshela
+  <div class="guest-card fade delay2">
+    <p class="guest-label">Kepada Yth.</p>
+    <h2 id="guestName" class="guest-name hand">Tamu Undangan</h2>
   </div>
 
-  <p class="small fade delay2">
-    Engagement Invitation
-  </p>
 
-  <a href="#opening" class="btn" onclick="startMusic()">
+  <a href="#opening" class="btn fade delay3" onclick="startMusic()">
     Buka Undangan
   </a>
 
@@ -361,15 +421,16 @@ p{
   </p>
 
   <p class="small" style="margin-top:18px">
-    Dengan memohon rahmat dan ridho Allah SWT, 
+    Dengan memohon rahmat dan ridho Allah SWT,
     kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pertunangan kami.
   </p>
 
   <h2 class="hand future-title">
-  The Future
+    The Future
   </h2>
-<h2 class="hand future-title">
-  Bride & Groom
+
+  <h2 class="hand future-title">
+    Bride & Groom
   </h2>
 
   <div class="photo-frame">
@@ -427,42 +488,42 @@ p{
     <tr>
       <td id="dateBefore2">26</td>
       <td id="dateBefore1">27</td>
-      <td><span class="circle" id="dateEvent">28</span></td>
+      <td>
+        <span class="circle" id="dateEvent">28</span>
+      </td>
     </tr>
   </table>
 
   <div class="event-card">
 
-  <h2 class="hand dress-title">
-    <svg width="42" height="42" viewBox="0 0 64 64" fill="none"
-      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M24 10L32 17L40 10"
-        stroke="#9d1420" stroke-width="3"
-        stroke-linecap="round" stroke-linejoin="round"/>
+    <h2 class="hand dress-title">
+      <svg width="42" height="42" viewBox="0 0 64 64" fill="none"
+        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 10L32 17L40 10"
+          stroke="#9d1420" stroke-width="3"
+          stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 10L14 15C11.5 16.2 10.2 19 11.2 21.6L15 31L22 28V52C22 53.7 23.3 55 25 55H39C40.7 55 42 53.7 42 52V28L49 31L52.8 21.6C53.8 19 52.5 16.2 50 15L40 10"
+          stroke="#9d1420" stroke-width="3"
+          stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M29 20H35"
+          stroke="#9d1420" stroke-width="3"
+          stroke-linecap="round"/>
+      </svg>
 
-      <path d="M24 10L14 15C11.5 16.2 10.2 19 11.2 21.6L15 31L22 28V52C22 53.7 23.3 55 25 55H39C40.7 55 42 53.7 42 52V28L49 31L52.8 21.6C53.8 19 52.5 16.2 50 15L40 10"
-        stroke="#9d1420" stroke-width="3"
-        stroke-linecap="round" stroke-linejoin="round"/>
+      Dresscode
+    </h2>
 
-      <path d="M29 20H35"
-        stroke="#9d1420" stroke-width="3"
-        stroke-linecap="round"/>
-    </svg>
+    <p class="dress-subtitle">
+      white / brown / red wine
+    </p>
 
-    Dresscode
-  </h2>
+    <img
+      class="dresscode-img"
+      src="https://lh3.googleusercontent.com/d/1J-DRIuJCshjfNHdVKbmWf8cgM6fIoHJS"
+      alt="Dresscode"
+    >
 
-  <p class="dress-subtitle">
-    white / brown / red wine
-  </p>
-
-  <img
-    class="dresscode-img"
-    src="https://lh3.googleusercontent.com/d/1J-DRIuJCshjfNHdVKbmWf8cgM6fIoHJS"
-    alt="Dresscode"
-  >
-
-</div>
+  </div>
 
   <div class="event-card">
 
@@ -479,7 +540,8 @@ p{
     </p>
 
     <p class="small">
-      RM Saoeng Paberik, Jl. Soekarno-Hatta No.571, Gumuruh, Kec. Batununggal, Kota Bandung, Jawa Barat 40275
+      RM Saoeng Paberik, Jl. Soekarno-Hatta No.571, Gumuruh,
+      Kec. Batununggal, Kota Bandung, Jawa Barat 40275
     </p>
 
     <a
@@ -520,13 +582,26 @@ function startMusic(){
   });
 }
 
-/*
-  CUKUP UBAH TANGGAL DI SINI
-  Format: tahun, bulanIndex, tanggal
-  Catatan: bulanIndex dimulai dari 0
-  Januari=0, Februari=1, Maret=2, April=3, Mei=4, Juni=5, Juli=6, dst.
+/* NAMA TAMU DARI URL
+   Contoh:
+   ?to=Marsela%20Alpira%20Irawan
+*/
+function renderGuestName(){
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('to');
+  const guestName = document.getElementById('guestName');
 
-  Event sekarang: Minggu, 28 Juni 2026 jam 10.00 WIB
+  if(guest && guest.trim() !== ''){
+    guestName.textContent = guest;
+  } else {
+    guestName.textContent = 'Tamu Undangan';
+  }
+}
+
+/*
+  UBAH TANGGAL ACARA DI SINI
+  Format: tahun, bulanIndex, tanggal, jam, menit, detik
+  Januari=0, Februari=1, Maret=2, April=3, Mei=4, Juni=5
 */
 const eventDate = new Date(2026, 5, 28, 10, 0, 0);
 
@@ -584,6 +659,7 @@ function renderCalendar(){
     `${dayNames[eventDate.getDay()]}, ${eventDate.getDate()} ${monthNames[eventDate.getMonth()]} ${eventDate.getFullYear()}`;
 }
 
+renderGuestName();
 renderCalendar();
 </script>
 
